@@ -22,5 +22,7 @@
 
     <color name="red">#CCF15382</color>
     <color name="deep_red">#CCDC295E</color>
+    
+    <color name="deep_gray">#ccbfbfbf</color>
 
 </resources>

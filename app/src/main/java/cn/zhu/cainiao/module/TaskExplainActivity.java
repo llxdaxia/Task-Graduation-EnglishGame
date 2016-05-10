@@ -29,10 +29,10 @@ public class TaskExplainActivity extends BaseActivity {
                 "-  加油吧！孩子");
 
         author.setText("姓名：朱虹春\n" +
-                "学校：重庆邮电大学\n\n" +
+                "学校：重庆邮电大学\n" +
                 "学号：2012211124\n" +
                 "学院：经济管理学院\n" +
-                "专业：信息管理与信息系统\n" +
+                "专业：信息管理与信息系统\n\n" +
                 "希望大家喜欢！");
     }
 }

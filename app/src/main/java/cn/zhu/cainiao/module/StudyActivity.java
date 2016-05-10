@@ -1,6 +1,7 @@
 package cn.zhu.cainiao.module;
 
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 
 import butterknife.BindView;
@@ -49,6 +51,8 @@ public class StudyActivity extends BaseActivity {
     private int currentSurplusNum;   //当前单词剩余数
     private boolean isUpdateLevel;
 
+    private TextToSpeech textToSpeech;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +64,25 @@ public class StudyActivity extends BaseActivity {
         isUpdateLevel = getIntent().getBooleanExtra(Config.IS_UPDATE_LEVEL, false);
 
         setTitle("第" + currentStudyLevelNum + "章节");
+
+        textToSpeech = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if (status == TextToSpeech.SUCCESS) {
+                    int supported = textToSpeech.setLanguage(Locale.US);
+                    if ((supported != TextToSpeech.LANG_AVAILABLE) && (supported != TextToSpeech.LANG_COUNTRY_AVAILABLE)) {
+                        Utils.SnackbarShort(next, "不支持当前语言！");
+                    }
+                }
+            }
+        });
+
+        pronunciation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                textToSpeech.speak(english.getText().toString(), TextToSpeech.QUEUE_FLUSH, null);
+            }
+        });
 
         WordModel.getInstance().getAllWordData(new FindListener<Word>() {
             @Override
