@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#1cd6cc</color>
+    <color name="colorPrimaryDark">#16bab2</color>
+    <color name="colorAccent">#ea5d41</color>
+
+    <color name="divider">@color/grey</color>
+
+    <color name="orange">#f4ca4c</color>
+    <color name="deep_orange">#efb609</color>
+
+    <color name="blush">#ccf75f2f</color>
+
+    <color name="write">#fff</color>
+    <color name="grey">#e0e0e0</color>
+
+    <color name="green">#FF57E991</color>
+    <color name="deep_green">#FF29AF5E</color>
+
+    <color name="blue">#3698f4</color>
+    <color name="deep_blue">#FF1773C9</color>
+
+    <color name="red">#CCF15382</color>
+    <color name="deep_red">#CCDC295E</color>
+
+</resources>

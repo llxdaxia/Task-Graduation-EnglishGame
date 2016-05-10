@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="cn.zhu.cainiao.module.TaskExplainActivity">
+
+    <include layout="@layout/include_toolbar"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:textSize="16sp"
+        android:text="         新浪科技讯 5月9日下午消息，第一财经商业数据中心在京发布了中国电商物流大数据报告。
+        其中的调查数据显示，江浙沪地区的网购包邮率已经被中部五省击败，
+        网购已经从消费者广为认知的“江浙沪包邮”进入全民包邮时代。"/>
+
+</LinearLayout>

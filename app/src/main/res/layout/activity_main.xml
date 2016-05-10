@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/include_toolbar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/study"
+                android:layout_width="200dp"
+                android:layout_height="48dp"
+                android:layout_margin="16dp"
+                android:background="@drawable/button_bg"
+                android:clickable="true"
+                android:gravity="center"
+                android:text="英语学习"
+                android:textColor="@color/write"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/start_checkpoints"
+                android:layout_width="200dp"
+                android:layout_height="48dp"
+                android:layout_margin="16dp"
+                android:background="@drawable/button_bg"
+                android:clickable="true"
+                android:gravity="center"
+                android:text="开始闯关"
+                android:textColor="@color/write"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/level_set"
+                android:layout_width="200dp"
+                android:layout_height="48dp"
+                android:layout_margin="16dp"
+                android:background="@drawable/button_bg"
+                android:clickable="true"
+                android:gravity="center"
+                android:text="关卡设置"
+                android:textColor="@color/write"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/task_explain"
+                android:layout_width="200dp"
+                android:layout_height="48dp"
+                android:layout_margin="16dp"
+                android:background="@drawable/button_bg"
+                android:clickable="true"
+                android:gravity="center"
+                android:text="任务说明"
+                android:textColor="@color/write"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
