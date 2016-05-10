@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
     <include layout="@layout/include_toolbar" />
@@ -19,14 +20,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="16dp"
-            android:text="苹果"
+            tools:text="苹果"
             android:textSize="18sp" />
 
         <TextView
             android:id="@+id/english"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="apple"
+            tools:text="apple"
             android:textColor="@color/blue"
             android:textSize="16sp" />
 
@@ -44,13 +45,13 @@
             android:layout_height="22dp"
             android:layout_marginRight="24dp"
             android:background="@drawable/ic_pronounce"
-            android:text="苹果" />
+            tools:text="苹果" />
 
         <TextView
             android:id="@+id/phoneticSymbol"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="英 [ ˈæpl ]   美 [ ˈæpəl ]"
+            tools:text="英 [ ˈæpl ]   美 [ ˈæpəl ]"
             android:textSize="18sp" />
 
     </LinearLayout>

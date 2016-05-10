@@ -9,6 +9,7 @@ import android.widget.Button;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import cn.alien95.util.Utils;
 import cn.zhu.cainiao.R;
 import cn.zhu.cainiao.app.BaseActivity;
 import cn.zhu.cainiao.config.Config;
@@ -23,6 +24,7 @@ public class CheckpointsLevelActivity extends BaseActivity {
     @BindView(R.id.enter)
     Button enter;
 
+    private StarAdapter adapter;
     private User user;
 
     @Override
@@ -34,7 +36,7 @@ public class CheckpointsLevelActivity extends BaseActivity {
 
         user = AccountModel.getInstance().getAccount();
         recyclerView.setLayoutManager(new GridLayoutManager(this, 5));
-        recyclerView.setAdapter(new StarAdapter(true, this, CheckpointsActivity.class));
+        recyclerView.setAdapter(adapter = new StarAdapter(true, this, CheckpointsActivity.class));
 
         enter.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,6 +47,13 @@ public class CheckpointsLevelActivity extends BaseActivity {
                 startActivity(intent);
             }
         });
-
     }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Utils.Log("onRestart");
+        adapter.updateData();
+    }
+
 }

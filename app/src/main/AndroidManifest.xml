@@ -32,14 +32,17 @@
             android:name=".module.StudyActivity"
             android:label="学习" />
         <activity
-            android:name=".module.LevelSetActivity"
-            android:label="关卡设置" />
-        <activity android:name=".module.TaskExplainActivity"
-            android:label="任务说明"/>
-        <activity android:name=".module.CheckpointsLevelActivity"
-            android:label="通关情况"/>
-        <activity android:name=".module.StudyLevelActivity"
-            android:label="学习情况"/>
+            android:name=".module.SetActivity"
+            android:label="个人设置" />
+        <activity
+            android:name=".module.TaskExplainActivity"
+            android:label="任务说明" />
+        <activity
+            android:name=".module.CheckpointsLevelActivity"
+            android:label="通关情况" />
+        <activity
+            android:name=".module.StudyLevelActivity"
+            android:label="学习情况" />
     </application>
 
 </manifest>

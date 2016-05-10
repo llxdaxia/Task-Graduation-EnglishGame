@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -15,6 +16,7 @@ import cn.alien95.util.Utils;
 import cn.bmob.v3.listener.FindListener;
 import cn.zhu.cainiao.R;
 import cn.zhu.cainiao.app.BaseActivity;
+import cn.zhu.cainiao.config.Config;
 import cn.zhu.cainiao.model.AccountModel;
 import cn.zhu.cainiao.model.WordModel;
 import cn.zhu.cainiao.model.bean.Word;
@@ -23,6 +25,7 @@ import cn.zhu.cainiao.model.bean.Word;
  * Created by linlongxin on 2016/5/8.
  */
 public class CheckpointsActivity extends BaseActivity {
+
 
     @BindView(R.id.word_image)
     HttpImageView wordImage;
@@ -36,11 +39,15 @@ public class CheckpointsActivity extends BaseActivity {
     TextView D;
     @BindView(R.id.next)
     Button next;
-
-    private int checkpointNum;
     private List<Word> wordData;
+    private List<Integer> randomNum = new ArrayList<>();
     private int[] backgroundRes;
-    private boolean isSuccess;
+    private boolean isSelectCorrect;
+    private int currentLevelNum;
+    private boolean isUpdateLevel;
+    private int allWordNum;
+    private int maxLevelNum;
+    private int currentSurplusNum;   //当前单词剩余数
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,111 +56,125 @@ public class CheckpointsActivity extends BaseActivity {
         ButterKnife.bind(this);
         setToolbarIsBack(true);
 
-        checkpointNum = AccountModel.getInstance().getAccount().getPassLevelNum() + 1;
-
-        setTitle("第" + checkpointNum + "关");
-
+        currentLevelNum = getIntent().getIntExtra(Config.POSITION, -1);
+        isUpdateLevel = getIntent().getBooleanExtra(Config.IS_UPDATE_LEVEL, false);
         backgroundRes = new int[]{R.drawable.random_one, R.drawable.random_two, R.drawable.random_three, R.drawable.random_four};
+        setOptionBackground();  //设置选项的背景
+        setTitle("第" + currentLevelNum + "关");
 
-        setOptionBackground();
-
-        showProgressBar("加载中...");
         WordModel.getInstance().getAllWordData(new FindListener<Word>() {
             @Override
             public void onSuccess(List<Word> list) {
                 wordData = list;
-                if (list.size() < checkpointNum) {
-                    showDialog("没有关卡了");
-                    dismissProgressBar();
-                    next.setEnabled(false);
-                    return;
+                allWordNum = list.size();
+                if (allWordNum % 10 == 0) {
+                    maxLevelNum = allWordNum / 10;
+                } else {
+                    maxLevelNum = allWordNum / 10 + 1;
                 }
-                final Word word = list.get(checkpointNum - 1);
-                if (word == null) {
-                    dismissProgressBar();
-                    return;
-                }
-                List<String> data = word.getOptions();
-                wordImage.setImageUrl(word.getImgUrl());
-                A.setText(data.get(0));
-                B.setText(data.get(1));
-                C.setText(data.get(2));
-                D.setText(data.get(3));
-                dismissProgressBar();
 
-                setLisenner(word);
+                if (currentLevelNum > maxLevelNum) {  //所有都学完了
+                    showDialog("所有关卡已被你闯完");
+                    return;
+                } else {
+
+                    if (maxLevelNum - currentLevelNum == 0) {  //最后一关
+                        currentSurplusNum = allWordNum % 10;
+                    } else {  //不是最后一关
+                        currentSurplusNum = 10;
+                    }
+
+                    if (currentSurplusNum == 1) {
+                        next.setText("完成");
+                    }
+
+                    setRandom(currentSurplusNum);   //产生一堆不重复随机数
+
+                    Word word = wordData.get((currentLevelNum - 1) * 10 + randomNum.get(currentSurplusNum - 1));
+                    currentSurplusNum--;
+                    List<String> data = word.getOptions();
+                    wordImage.setImageUrl(word.getImgUrl());
+                    A.setText(data.get(0));
+                    B.setText(data.get(1));
+                    C.setText(data.get(2));
+                    D.setText(data.get(3));
+
+                    setOptionListener(word);
+                }
+
             }
 
             @Override
             public void onError(int i, String s) {
-                Utils.Log("code : " + i + "error : " + s);
                 if (i != 9009) {
-                    Utils.SnackbarShort(A, "加载失败");
+                    Utils.Toast("获取数据失败");
                 }
-                dismissProgressBar();
             }
         });
+
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if (!isSuccess) {
-                    showDialog("请选择答案");
+                if (!isSelectCorrect) {
+                    showDialog("请选择正确答案");
                     return;
                 }
 
-                showProgressBar("正在加载...");
-                checkpointNum++;
-                if (checkpointNum > wordData.size()) {
-                    showDialog("你好厉害，所有关卡已被你闯完！");
-                    dismissProgressBar();
-                    return;
+                if (currentSurplusNum == 0) {  //本章节已经学习完了
+                    Utils.Toast("恭喜你，完成了这个关卡");
+                    if (isUpdateLevel) {
+                        AccountModel.getInstance().updateCheckpointLevel(currentLevelNum);
+                    }
+                    finish();
+                } else {
+                    if (currentSurplusNum == 1) {
+                        next.setText("完成");
+                    }
+                    Word word = wordData.get((currentLevelNum - 1) * 10 + randomNum.get(currentSurplusNum - 1));
+                    currentSurplusNum--;
+
+                    List<String> data = word.getOptions();
+                    wordImage.setImageUrl(word.getImgUrl());
+                    A.setText(data.get(0));
+                    B.setText(data.get(1));
+                    C.setText(data.get(2));
+                    D.setText(data.get(3));
+
+                    setOptionBackground();
+                    setOptionListener(word);
                 }
-                Word word = wordData.get(checkpointNum - 1);
-                if (word == null) {
-                    dismissProgressBar();
-                    return;
-                }
-                setTitle("第" + checkpointNum + "关");
-                List<String> data = word.getOptions();
-                wordImage.setImageUrl(word.getImgUrl());
-                A.setText(data.get(0));
-                B.setText(data.get(1));
-                C.setText(data.get(2));
-                D.setText(data.get(3));
-                setOptionBackground();
-                dismissProgressBar();
-                setLisenner(word);
+
             }
         });
 
     }
 
 
-    public void setLisenner(final Word word) {
+    public void setOptionListener(final Word word) {
         A.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setOption(word, 0);
+                setOption(word, 0, A);
             }
         });
         B.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setOption(word, 1);
+                setOption(word, 1, B);
             }
         });
         C.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setOption(word, 2);
+                setOption(word, 2, C);
             }
         });
         D.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setOption(word, 3);
+                setOption(word, 3, D);
             }
         });
     }
@@ -178,14 +199,27 @@ public class CheckpointsActivity extends BaseActivity {
         D.setBackgroundResource(backgroundRes[data[3]]);
     }
 
-    public void setOption(Word word, int postion) {
-        if (word.getCorrectOption() == postion) {
+    public void setOption(Word word, int position, TextView option) {
+        if (word.getCorrectOption() == position) {
+            isSelectCorrect = true;
+            option.setPressed(true);
             showDialog("恭喜你，回答正确");
-            isSuccess = true;
-            AccountModel.getInstance().updateCheckpointLevel(checkpointNum);
         } else {
-            showDialog("答案错误！");
-            isSuccess = false;
+            Utils.SnackbarShort(option, "答案错误");
+            isSelectCorrect = false;
+        }
+    }
+
+    public void setRandom(int endNum) {
+        Random rand = new Random(System.currentTimeMillis());
+        boolean[] bool = new boolean[endNum];
+        int randInt;
+        for (int i = 0; i < endNum; i++) {
+            do {
+                randInt = rand.nextInt(endNum);
+            } while (bool[randInt]);
+            bool[randInt] = true;
+            randomNum.add(randInt);
         }
     }
 }

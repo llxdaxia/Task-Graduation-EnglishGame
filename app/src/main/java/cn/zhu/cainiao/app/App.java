@@ -30,7 +30,7 @@ public class App extends Application {
         Http.initialize(this);
         Bmob.initialize(this, "7914417338839ca7521908cfecd1851c");
 
-        //获取数据并缓存到本地
+        //获取所有单词数据并缓存到本地
         WordModel.getInstance().getAllWordData(new FindListener<Word>() {
             @Override
             public void onSuccess(List<Word> list) {

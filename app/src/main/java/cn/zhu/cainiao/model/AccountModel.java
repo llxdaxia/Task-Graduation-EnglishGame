@@ -40,6 +40,7 @@ public class AccountModel {
         account.setUsername(name);
         account.setPassword(password);
         account.setPassLevelNum(0);
+        account.setStudyLevelNum(0);
         account.signUp(Utils.getContext(), saveListener);
     }
 
@@ -54,14 +55,14 @@ public class AccountModel {
         account = null;
     }
 
-    public void updateCheckpointLevel(final int level) {
+    public void updateCheckpointLevel(int level) {
+        account.setPassLevelNum(level);
         User newUser = new User();
         newUser.setPassLevelNum(level);
         BmobUser bmobUser = User.getCurrentUser(Utils.getContext());
         newUser.update(Utils.getContext(), bmobUser.getObjectId(), new UpdateListener() {
             @Override
             public void onSuccess() {
-                account.setPassLevelNum(level);
                 Utils.writeObjectToFile(account, Config.USER_FILE);
             }
 
@@ -72,14 +73,14 @@ public class AccountModel {
         });
     }
 
-    public void updateStudyLevel(final int level) {
+    public void updateStudyLevel(int level) {
+        account.setStudyLevelNum(level);
         User newUser = new User();
         newUser.setStudyLevelNum(level);
         BmobUser bmobUser = User.getCurrentUser(Utils.getContext());
         newUser.update(Utils.getContext(), bmobUser.getObjectId(), new UpdateListener() {
             @Override
             public void onSuccess() {
-                account.setStudyLevelNum(level);
                 Utils.writeObjectToFile(account, Config.USER_FILE);
             }
 
@@ -92,10 +93,11 @@ public class AccountModel {
 
     public void updateAccount() {
         if (getAccount() == null) {
+            Utils.Log("用户信息 == null");
             return;
         }
         BmobQuery<User> query = new BmobQuery<>();
-        query.addWhereEqualTo("username", getAccount().getUsername());
+        query.addWhereEqualTo("username", account.getUsername());
         query.setLimit(1);
         query.findObjects(Utils.getContext(), new FindListener<User>() {
             @Override

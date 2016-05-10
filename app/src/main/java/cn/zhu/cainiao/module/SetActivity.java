@@ -2,10 +2,9 @@ package cn.zhu.cainiao.module;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -15,31 +14,35 @@ import cn.zhu.cainiao.app.BaseActivity;
 import cn.zhu.cainiao.config.Config;
 import cn.zhu.cainiao.model.AccountModel;
 import cn.zhu.cainiao.model.bean.User;
-import cn.zhu.cainiao.module.adaper.StarAdapter;
 
 /**
  * Created by linlongxin on 2016/5/9.
  */
-public class LevelSetActivity extends BaseActivity {
+public class SetActivity extends BaseActivity {
 
 
+    @BindView(R.id.user_name)
+    TextView userName;
+    @BindView(R.id.pass_level_num)
+    TextView passLevelNum;
+    @BindView(R.id.study_level_num)
+    TextView studyLevelNum;
     @BindView(R.id.exit)
     Button exit;
-    @BindView(R.id.recycler_view)
-    RecyclerView recyclerView;
-
     private User user;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_level_set);
+        setContentView(R.layout.activity_set);
         ButterKnife.bind(this);
         setToolbarIsBack(true);
 
         user = AccountModel.getInstance().getAccount();
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 5));
-        recyclerView.setAdapter(new StarAdapter(true, this, CheckpointsActivity.class));
+
+        userName.setText("用户名：" + user.getUsername());
+        passLevelNum.setText("通过关卡数：" + user.getPassLevelNum());
+        studyLevelNum.setText("学习章节数：" + user.getStudyLevelNum());
 
         exit.setOnClickListener(new View.OnClickListener() {
             @Override

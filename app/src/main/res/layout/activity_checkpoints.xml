@@ -96,7 +96,7 @@
         android:layout_margin="48dp"
         android:textColor="@color/blush"
         android:textSize="18sp"
-        android:text="下一关" />
+        android:text="下一个" />
 
 
 </LinearLayout>

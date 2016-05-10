@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import cn.alien95.util.Utils;
 import cn.zhu.cainiao.R;
 import cn.zhu.cainiao.config.Config;
 import cn.zhu.cainiao.model.AccountModel;
@@ -17,13 +18,13 @@ import cn.zhu.cainiao.model.bean.User;
 public class StarAdapter extends RecyclerView.Adapter<StarAdapter.StarViewHolder> {
 
     private User user;
-    private boolean isPassLevleNum;
+    private boolean isPassLevel;
     private Context mContext;
     private Class activity;
 
-    public StarAdapter(boolean isPassLevleNum, Context context, Class toActivity) {
+    public StarAdapter(boolean isPassLevel, Context context, Class toActivity) {
         user = AccountModel.getInstance().getAccount();
-        this.isPassLevleNum = isPassLevleNum;
+        this.isPassLevel = isPassLevel;
         this.mContext = context;
         this.activity = toActivity;
     }
@@ -35,20 +36,19 @@ public class StarAdapter extends RecyclerView.Adapter<StarAdapter.StarViewHolder
 
     @Override
     public void onBindViewHolder(StarViewHolder holder, final int position) {
-
+        Utils.Log("onBindViewHolder");
         //给每个关卡设置一个监听跳转
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, activity);
                 intent.putExtra(Config.POSITION, position + 1);
-                intent.putExtra(Config.IS_UPDATE_LEVEL,false);
+                intent.putExtra(Config.IS_UPDATE_LEVEL, false);
                 mContext.startActivity(intent);
             }
         });
 
-
-        if (isPassLevleNum) {   //闯关的情况
+        if (isPassLevel) {   //闯关的情况
             holder.setData(user.getPassLevelNum(), position + 1, mContext);
         } else {    //学习的情况
             holder.setData(user.getStudyLevelNum(), position + 1, mContext);
@@ -59,6 +59,11 @@ public class StarAdapter extends RecyclerView.Adapter<StarAdapter.StarViewHolder
     @Override
     public int getItemCount() {
         return 10;
+    }
+
+    public void updateData() {
+        user = AccountModel.getInstance().getAccount();
+        notifyDataSetChanged();
     }
 
     class StarViewHolder extends RecyclerView.ViewHolder {
@@ -76,10 +81,11 @@ public class StarAdapter extends RecyclerView.Adapter<StarAdapter.StarViewHolder
             status = (ImageView) itemView.findViewById(R.id.status);
         }
 
-        public void setData(int passLevelNum, int num, final Context context) {
-            levelNum.setText(num + "");
-            if (passLevelNum >= num) {
+        public void setData(int levelNum, int position, final Context context) {
+            this.levelNum.setText(position + "");
+            if (levelNum >= position) {
                 status.setImageResource(R.drawable.ic_star_pass);
+                itemView.setEnabled(true);
             } else {
                 itemView.setEnabled(false);
             }

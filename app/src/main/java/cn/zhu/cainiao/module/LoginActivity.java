@@ -59,12 +59,12 @@ public class LoginActivity extends BaseActivity {
                     AccountModel.getInstance().login(name, pw, new LogInListener<User>() {
                         @Override
                         public void done(User user, BmobException e) {
-                            if(user != null){
+                            if (user != null) {
                                 Utils.writeObjectToFile(user, Config.USER_FILE);
                                 Utils.Toast("登录成功");
                                 finish();
-                            }else {
-                                Utils.SnackbarShort(login,"用户名或密码错误");
+                            } else {
+                                Utils.SnackbarShort(login, "用户名或密码错误");
                             }
 
 
@@ -77,6 +77,7 @@ public class LoginActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+                finish();
             }
         });
     }

@@ -11,14 +11,13 @@ import cn.alien95.util.Utils;
 import cn.zhu.cainiao.app.BaseActivity;
 import cn.zhu.cainiao.config.Config;
 import cn.zhu.cainiao.module.CheckpointsLevelActivity;
-import cn.zhu.cainiao.module.LevelSetActivity;
 import cn.zhu.cainiao.module.LoginActivity;
+import cn.zhu.cainiao.module.SetActivity;
 import cn.zhu.cainiao.module.StudyLevelActivity;
 import cn.zhu.cainiao.module.TaskExplainActivity;
 
 public class MainActivity extends BaseActivity {
 
-    public static final int REQUEST_CODE_CAMERA = 100;
     @BindView(R.id.start_checkpoints)
     TextView startCheckpoints;
     @BindView(R.id.study)
@@ -54,7 +53,7 @@ public class MainActivity extends BaseActivity {
         levelSet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(LevelSetActivity.class);
+                startActivity(SetActivity.class);
             }
         });
 

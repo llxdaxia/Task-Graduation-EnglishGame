@@ -44,7 +44,7 @@ public class StudyActivity extends BaseActivity {
     private List<Word> wordData;
     private List<Integer> randomNum = new ArrayList<>();
     private int allWordNum;
-    private int studyLevelNum;
+    private int currentStudyLevelNum;
     private int maxLevelNum;
     private int currentSurplusNum;   //当前单词剩余数
     private boolean isUpdateLevel;
@@ -56,10 +56,10 @@ public class StudyActivity extends BaseActivity {
         ButterKnife.bind(this);
         setToolbarIsBack(true);
 
-        studyLevelNum = getIntent().getIntExtra(Config.POSITION, -1);
+        currentStudyLevelNum = getIntent().getIntExtra(Config.POSITION, -1);
         isUpdateLevel = getIntent().getBooleanExtra(Config.IS_UPDATE_LEVEL, false);
 
-        setTitle("第" + studyLevelNum + "章节");
+        setTitle("第" + currentStudyLevelNum + "章节");
 
         WordModel.getInstance().getAllWordData(new FindListener<Word>() {
             @Override
@@ -74,24 +74,24 @@ public class StudyActivity extends BaseActivity {
                     maxLevelNum = allWordNum / 10 + 1;
                 }
 
-                if (studyLevelNum > maxLevelNum) {
+                if (currentStudyLevelNum > maxLevelNum) {
                     showDialog("你所有章节已学完");
                     return;
                 } else {
-                    Word word;
                     //不是最后章节
-                    if (maxLevelNum - studyLevelNum > 0) {
-                        setRandom(10);  //生成一堆不重复随机数
+                    if (maxLevelNum - currentStudyLevelNum > 0) {
                         currentSurplusNum = 10;
                     } else {
                         //最后一个章节
-                        int endLevelNum = allWordNum % 10;
-                        setRandom(endLevelNum);
-                        currentSurplusNum = endLevelNum;
-                        Utils.Log("allWordNum : " + maxLevelNum);
-                        Utils.Log("currentSurplusNum : " + currentSurplusNum);
+                        currentSurplusNum = allWordNum % 10;
                     }
-                    word = wordData.get((studyLevelNum - 1) * 10 + randomNum.get(currentSurplusNum - 1));
+
+                    if (currentSurplusNum == 1) {
+                        next.setText("完成");
+                    }
+
+                    setRandom(currentSurplusNum);  //生成一堆不重复随机数
+                    Word word = wordData.get((currentStudyLevelNum - 1) * 10 + randomNum.get(currentSurplusNum - 1));
                     currentSurplusNum--;
                     chinese.setText(word.getChinese());
                     english.setText(word.getTranslate());
@@ -115,14 +115,14 @@ public class StudyActivity extends BaseActivity {
                 if (currentSurplusNum == 0) {  //本章节已经学习完了
                     Utils.Toast("本章节已学完");
                     if (isUpdateLevel) {
-                        AccountModel.getInstance().updateStudyLevel(studyLevelNum);
+                        AccountModel.getInstance().updateStudyLevel(currentStudyLevelNum);
                     }
                     finish();
                 } else {
                     if (currentSurplusNum == 1) {
-                        next.setText("学习下一章节");
+                        next.setText("完成");
                     }
-                    Word word = wordData.get(randomNum.get(currentSurplusNum - 1));
+                    Word word = wordData.get((currentStudyLevelNum - 1) * 10 + randomNum.get(currentSurplusNum - 1));
                     currentSurplusNum--;
                     chinese.setText(word.getChinese());
                     english.setText(word.getTranslate());

@@ -1,20 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="cn.zhu.cainiao.module.TaskExplainActivity">
+    android:orientation="vertical">
 
-    <include layout="@layout/include_toolbar"/>
+    <include layout="@layout/include_toolbar" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:textSize="16sp"
-        android:text="         新浪科技讯 5月9日下午消息，第一财经商业数据中心在京发布了中国电商物流大数据报告。
-        其中的调查数据显示，江浙沪地区的网购包邮率已经被中部五省击败，
-        网购已经从消费者广为认知的“江浙沪包邮”进入全民包邮时代。"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="16dp"
+                android:text="任务说明"
+                android:textColor="@color/blue"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="32dp"
+                android:lineSpacingMultiplier="1.2"
+                android:textSize="16sp"
+                tools:text="即将到来的517电信日，原本按照业内预期，首批获得虚拟运营试点牌照的虚拟运营商有望迎来正式牌照。但试运行期间电信诈骗扎堆使用虚拟号段的情况，导致工信部针对这一现象进行专项治理，也让这一预期出现了较大变数.." />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="16dp"
+                android:text="App作者"
+                android:textColor="@color/blue"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/author"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginRight="32dp"
+                android:layout_marginBottom="16dp"
+                android:lineSpacingMultiplier="1.5"
+                android:textSize="16sp"
+                tools:text="即将到来的517电信日，原本按照业内预期，首批获得虚拟运营试点牌照的虚拟运营商有望迎来正式牌照。但" />
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </LinearLayout>
