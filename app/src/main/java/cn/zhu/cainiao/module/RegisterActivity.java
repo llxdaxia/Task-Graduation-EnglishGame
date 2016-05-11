@@ -62,13 +62,15 @@ public class RegisterActivity extends BaseActivity {
                         @Override
                         public void onFailure(int code, String arg0) {
                             Utils.Log("code : " + code + " arg : " + arg0);
-                            Utils.SnackbarShort(register,"用户名重复");
+                            if (code == 9010 || code == 9016) {
+                                Utils.SnackbarShort(register, "网络错误，请检查你的网络");
+                            } else
+                                Utils.SnackbarShort(register, "用户名重复");
                         }
                     });
                 }
             }
         });
-
 
 
     }

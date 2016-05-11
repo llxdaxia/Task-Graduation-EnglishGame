@@ -31,8 +31,8 @@ public class AccountModel {
         return instance;
     }
 
-    public void login(final String name, String password, LogInListener<User> logInListener) {
-        User.loginByAccount(Utils.getContext(), name, password, logInListener);
+    public void login(String name,String password, LogInListener<User> logInListener) {
+        BmobUser.loginByAccount(Utils.getContext(), name, password, logInListener);
     }
 
     public void register(String name, String password, SaveListener saveListener) {

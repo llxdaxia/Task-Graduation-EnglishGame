@@ -55,7 +55,7 @@ public class LoginActivity extends BaseActivity {
                 final String pw = password.getEditText().getText().toString();
                 if (name.isEmpty() || pw.isEmpty()) {
                     Utils.SnackbarShort(userName, "用户名或密码不能为空");
-                } else
+                } else {
                     AccountModel.getInstance().login(name, pw, new LogInListener<User>() {
                         @Override
                         public void done(User user, BmobException e) {
@@ -64,12 +64,17 @@ public class LoginActivity extends BaseActivity {
                                 Utils.Toast("登录成功");
                                 finish();
                             } else {
-                                Utils.SnackbarShort(login, "用户名或密码错误");
+                                Utils.Log("error-code : " + e.getErrorCode());
+                                if (e.getErrorCode() == 9010 || e.getErrorCode() == 9016) {
+                                    Utils.SnackbarShort(userName, "网络错误，请检查你的网络");
+                                } else {
+                                    Utils.SnackbarShort(userName, "用户名或密码错误");
+                                }
                             }
-
-
                         }
                     });
+                }
+
             }
         });
 
