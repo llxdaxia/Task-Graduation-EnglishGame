@@ -99,6 +99,7 @@ public class StudyActivity extends BaseActivity {
 
                 if (currentStudyLevelNum > maxLevelNum) {
                     showDialog("你所有章节已学完");
+                    next.setEnabled(false);
                     return;
                 } else {
                     //不是最后章节
