@@ -1,7 +1,11 @@
 package cn.zhu.cainiao;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.TextView;
 
@@ -27,6 +31,7 @@ public class MainActivity extends BaseActivity {
     @BindView(R.id.task_explain)
     TextView taskExplain;
 
+    private final int PERMISSION_REQUEST_CODE = 110;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +40,13 @@ public class MainActivity extends BaseActivity {
         ButterKnife.bind(this);
         setToolbarIsBack(false);
         setTitle("菜鸟");
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
+                || ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            //申请权限
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE},
+                    PERMISSION_REQUEST_CODE);
+        }
 
         startCheckpoints.setOnClickListener(new View.OnClickListener() {
             @Override

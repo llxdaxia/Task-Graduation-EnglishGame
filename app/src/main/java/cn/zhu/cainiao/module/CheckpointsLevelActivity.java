@@ -41,9 +41,13 @@ public class CheckpointsLevelActivity extends BaseActivity {
         enter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (user.getStudyLevelNum() <= user.getPassLevelNum()) {
+                    Utils.SnackbarShort(enter, "请先进行“英语学习”");
+                    return;
+                }
                 Intent intent = new Intent(CheckpointsLevelActivity.this, CheckpointsActivity.class);
                 intent.putExtra(Config.POSITION, user.getPassLevelNum() + 1);
-                intent.putExtra(Config.IS_UPDATE_LEVEL,true);
+                intent.putExtra(Config.IS_UPDATE_LEVEL, true);
                 startActivity(intent);
             }
         });

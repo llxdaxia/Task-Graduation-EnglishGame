@@ -5,15 +5,15 @@ android {
     compileSdkVersion 23
     buildToolsVersion "23.0.2"
 
-    //**bmob-sdk:3.4.6版本依赖包，用于兼容Android6.0系统**
+    //android6.0删除了Apache的http，通过这个依赖
     useLibrary 'org.apache.http.legacy'
 
     defaultConfig {
         applicationId "cn.zhu.cainiao"
         minSdkVersion 15
         targetSdkVersion 23
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.0.1"
     }
     buildTypes {
         release {
