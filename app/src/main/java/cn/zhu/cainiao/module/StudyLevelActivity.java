@@ -6,7 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Button;
+import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,11 +23,11 @@ import cn.zhu.cainiao.module.adaper.StarAdapter;
  */
 public class StudyLevelActivity extends BaseActivity {
 
+
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
     @BindView(R.id.enter)
-    Button enter;
-
+    TextView enter;
     private StarAdapter adapter;
     private User user;
 

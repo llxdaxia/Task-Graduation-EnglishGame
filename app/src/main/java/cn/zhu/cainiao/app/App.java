@@ -25,6 +25,7 @@ public class App extends Application {
         Utils.initialize(this);
         if (BuildConfig.DEBUG) {
             Utils.setDebug(true, "CaiNiao");
+            Http.setDebug(true,"Cainiao_network");
         }
 
         Http.initialize(this);

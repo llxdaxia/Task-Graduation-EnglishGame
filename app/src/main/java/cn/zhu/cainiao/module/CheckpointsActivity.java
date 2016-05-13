@@ -2,7 +2,6 @@ package cn.zhu.cainiao.module;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -17,7 +16,6 @@ import cn.bmob.v3.listener.FindListener;
 import cn.zhu.cainiao.R;
 import cn.zhu.cainiao.app.BaseActivity;
 import cn.zhu.cainiao.config.Config;
-import cn.zhu.cainiao.model.AccountModel;
 import cn.zhu.cainiao.model.WordModel;
 import cn.zhu.cainiao.model.bean.Word;
 
@@ -37,8 +35,6 @@ public class CheckpointsActivity extends BaseActivity {
     TextView C;
     @BindView(R.id.D)
     TextView D;
-    @BindView(R.id.next)
-    Button next;
     private List<Word> wordData;
     private List<Integer> randomNum = new ArrayList<>();
     private int[] backgroundRes;
@@ -84,16 +80,15 @@ public class CheckpointsActivity extends BaseActivity {
                         currentSurplusNum = 10;
                     }
 
-                    if (currentSurplusNum == 1) {
-                        next.setText("完成");
-                    }
-
                     setRandom(currentSurplusNum);   //产生一堆不重复随机数
 
                     Word word = wordData.get((currentLevelNum - 1) * 10 + randomNum.get(currentSurplusNum - 1));
                     currentSurplusNum--;
                     List<String> data = word.getOptions();
-                    wordImage.setImageUrl(word.getImgUrl());
+                    if (word.getImgUrl() != null && !word.getImgUrl().isEmpty()) {
+                        wordImage.setImageUrl(word.getImgUrl());
+                    }
+                    Utils.Log("word.getImgUrl() : " + word.getImgUrl());
                     A.setText(data.get(0));
                     B.setText(data.get(1));
                     C.setText(data.get(2));
@@ -113,41 +108,43 @@ public class CheckpointsActivity extends BaseActivity {
         });
 
 
-        next.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if (!isSelectCorrect) {
-                    showDialog("请选择正确答案");
-                    return;
-                }
-
-                if (currentSurplusNum == 0) {  //本章节已经学习完了
-                    Utils.Toast("恭喜你，完成了这个关卡");
-                    if (isUpdateLevel) {
-                        AccountModel.getInstance().updateCheckpointLevel(currentLevelNum);
-                    }
-                    finish();
-                } else {
-                    if (currentSurplusNum == 1) {
-                        next.setText("完成");
-                    }
-                    Word word = wordData.get((currentLevelNum - 1) * 10 + randomNum.get(currentSurplusNum - 1));
-                    currentSurplusNum--;
-
-                    List<String> data = word.getOptions();
-                    wordImage.setImageUrl(word.getImgUrl());
-                    A.setText(data.get(0));
-                    B.setText(data.get(1));
-                    C.setText(data.get(2));
-                    D.setText(data.get(3));
-
-                    setOptionBackground();
-                    setOptionListener(word);
-                }
-
-            }
-        });
+//        next.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                if (!isSelectCorrect) {
+//                    showDialog("请选择正确答案");
+//                    return;
+//                }
+//
+//                if (currentSurplusNum == 0) {  //本章节已经学习完了
+//                    Utils.Toast("恭喜你，完成了这个关卡");
+//                    if (isUpdateLevel) {
+//                        AccountModel.getInstance().updateCheckpointLevel(currentLevelNum);
+//                    }
+//                    finish();
+//                } else {
+//                    if (currentSurplusNum == 1) {
+//                        next.setText("完成");
+//                    }
+//                    Word word = wordData.get((currentLevelNum - 1) * 10 + randomNum.get(currentSurplusNum - 1));
+//                    currentSurplusNum--;
+//
+//                    List<String> data = word.getOptions();
+//                    if (word.getImgUrl() != null && !word.getImgUrl().isEmpty()) {
+//                        wordImage.setImageUrl(word.getImgUrl());
+//                    }
+//                    A.setText(data.get(0));
+//                    B.setText(data.get(1));
+//                    C.setText(data.get(2));
+//                    D.setText(data.get(3));
+//
+//                    setOptionBackground();
+//                    setOptionListener(word);
+//                }
+//
+//            }
+//        });
 
     }
 
@@ -203,7 +200,25 @@ public class CheckpointsActivity extends BaseActivity {
         if (word.getCorrectOption() == position) {
             isSelectCorrect = true;
             option.setPressed(true);
-            showDialog("恭喜你，回答正确");
+            Utils.Toast("恭喜你，回答正确");
+            if (currentSurplusNum > 0) {
+                Word newWord = wordData.get((currentLevelNum - 1) * 10 + randomNum.get(currentSurplusNum - 1));
+                currentSurplusNum--;
+                List<String> data = newWord.getOptions();
+                if (newWord.getImgUrl() != null) {
+                    wordImage.setImageUrl(newWord.getImgUrl());
+                }
+                A.setText(data.get(0));
+                B.setText(data.get(1));
+                C.setText(data.get(2));
+                D.setText(data.get(3));
+
+                setOptionBackground();
+                setOptionListener(newWord);
+            } else {
+                finish();
+            }
+
         } else {
             Utils.SnackbarShort(option, "答案错误");
             isSelectCorrect = false;

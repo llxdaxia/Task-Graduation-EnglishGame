@@ -21,15 +21,18 @@
             android:layout_marginRight="48dp"
             android:layout_marginTop="56dp" />
 
-        <Button
+        <TextView
             android:id="@+id/enter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="56dp"
             android:background="@color/blush"
-            android:text="进入"
-            android:textColor="@color/write" />
+            android:padding="8dp"
+            android:text="进入下一关"
+            android:textColor="@color/write"
+            android:textSize="18sp" />
+
     </LinearLayout>
 
 </LinearLayout>
