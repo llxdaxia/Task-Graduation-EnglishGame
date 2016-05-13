@@ -23,11 +23,13 @@
 
         <TextView
             android:id="@+id/enter"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="72dp"
+            android:layout_marginRight="72dp"
             android:layout_marginTop="56dp"
-            android:background="@color/blush"
+            android:background="@drawable/text_next_bg"
+            android:gravity="center"
             android:padding="8dp"
             android:text="进入下一关"
             android:textColor="@color/write"

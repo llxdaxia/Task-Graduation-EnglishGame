@@ -4,7 +4,7 @@ import android.app.Application;
 
 import java.util.List;
 
-import cn.alien95.resthttp.request.Http;
+import cn.alien95.resthttp.request.RestHttp;
 import cn.alien95.util.Utils;
 import cn.bmob.v3.Bmob;
 import cn.bmob.v3.listener.FindListener;
@@ -23,12 +23,12 @@ public class App extends Application {
         super.onCreate();
 
         Utils.initialize(this);
+        RestHttp.initialize(this);
         if (BuildConfig.DEBUG) {
             Utils.setDebug(true, "CaiNiao");
-            Http.setDebug(true,"Cainiao_network");
+            RestHttp.setDebug(true, "Cainiao_network");
         }
 
-        Http.initialize(this);
         Bmob.initialize(this, "7914417338839ca7521908cfecd1851c");
 
         //获取所有单词数据并缓存到本地

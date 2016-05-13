@@ -2,14 +2,15 @@
 <resources>
     <color name="colorPrimary">#1cd6cc</color>
     <color name="colorPrimaryDark">#16bab2</color>
-    <color name="colorAccent">#ea5d41</color>
+    <color name="colorAccent">@color/orange</color>
 
     <color name="divider">@color/grey</color>
 
-    <color name="orange">#f4ca4c</color>
-    <color name="deep_orange">#efb609</color>
+    <color name="yellow">#f4ca4c</color>
+    <color name="deep_yellow">#efb609</color>
 
-    <color name="blush">#ccf75f2f</color>
+    <color name="orange">#f58959</color>
+    <color name="deep_orange">#fc7334</color>
 
     <color name="write">#fff</color>
     <color name="grey">#e0e0e0</color>
@@ -20,8 +21,8 @@
     <color name="blue">#3698f4</color>
     <color name="deep_blue">#FF1773C9</color>
 
-    <color name="red">#CCF15382</color>
-    <color name="deep_red">#CCDC295E</color>
+    <color name="red">#ccf74c4c</color>
+    <color name="deep_red">#ccf92d2d</color>
     
     <color name="deep_gray">#ccbfbfbf</color>
 

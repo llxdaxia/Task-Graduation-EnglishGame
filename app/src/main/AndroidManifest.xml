@@ -36,7 +36,7 @@
             android:label="个人设置" />
         <activity
             android:name=".module.TaskExplainActivity"
-            android:label="任务说明" />
+            android:label="应用说明" />
         <activity
             android:name=".module.CheckpointsLevelActivity"
             android:label="通关情况" />

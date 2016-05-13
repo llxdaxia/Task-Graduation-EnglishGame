@@ -16,6 +16,7 @@ import cn.bmob.v3.listener.FindListener;
 import cn.zhu.cainiao.R;
 import cn.zhu.cainiao.app.BaseActivity;
 import cn.zhu.cainiao.config.Config;
+import cn.zhu.cainiao.model.AccountModel;
 import cn.zhu.cainiao.model.WordModel;
 import cn.zhu.cainiao.model.bean.Word;
 
@@ -216,6 +217,10 @@ public class CheckpointsActivity extends BaseActivity {
                 setOptionBackground();
                 setOptionListener(newWord);
             } else {
+                Utils.Toast("恭喜你，完成了这个关卡");
+                if (isUpdateLevel) {
+                    AccountModel.getInstance().updateCheckpointLevel(currentLevelNum);
+                }
                 finish();
             }
 

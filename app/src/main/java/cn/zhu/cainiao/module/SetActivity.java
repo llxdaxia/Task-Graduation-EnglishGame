@@ -3,7 +3,6 @@ package cn.zhu.cainiao.module;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import butterknife.BindView;
@@ -28,7 +27,8 @@ public class SetActivity extends BaseActivity {
     @BindView(R.id.study_level_num)
     TextView studyLevelNum;
     @BindView(R.id.exit)
-    Button exit;
+    TextView exit;
+
     private User user;
 
     @Override

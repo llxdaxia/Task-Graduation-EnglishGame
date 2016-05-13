@@ -72,14 +72,16 @@
         android:adjustViewBounds="true"
         android:scaleType="fitCenter" />
 
-    <Button
+    <TextView
         android:id="@+id/next"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="48dp"
-        android:background="@drawable/button_bg"
+        android:padding="8dp"
+        android:gravity="center"
+        android:background="@drawable/text_next_bg"
         android:text="下一个"
-        android:textColor="@color/blush"
+        android:textColor="@color/write"
         android:textSize="18sp" />
 
 </LinearLayout>

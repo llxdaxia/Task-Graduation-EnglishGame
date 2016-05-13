@@ -43,17 +43,21 @@
             android:layout_marginTop="24dp"
             android:text="获得称号：小神童！"
             android:textColor="@color/red"
-            android:textSize="24sp" />
+            android:textSize="22sp" />
 
-        <Button
+        <TextView
             android:id="@+id/exit"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
             android:layout_marginTop="56dp"
-            android:background="@color/blush"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/text_bg"
+            android:gravity="center"
+            android:padding="8dp"
             android:text="退出登录"
-            android:textColor="@color/write" />
+            android:textColor="@color/write"
+            android:textSize="18sp" />
     </LinearLayout>
 
 </LinearLayout>

@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.support.annotation.Nullable;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -41,7 +40,7 @@ public class StudyActivity extends BaseActivity {
     @BindView(R.id.image)
     HttpImageView image;
     @BindView(R.id.next)
-    Button next;
+    TextView next;
 
     private List<Word> wordData;
     private List<Integer> randomNum = new ArrayList<>();
