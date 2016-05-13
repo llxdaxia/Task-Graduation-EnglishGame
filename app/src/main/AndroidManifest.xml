@@ -28,9 +28,7 @@
             android:name=".module.LoginActivity"
             android:label="登录" />
         <activity android:name=".module.CheckpointsActivity" />
-        <activity
-            android:name=".module.StudyActivity"
-            android:label="学习" />
+        <activity android:name=".module.StudyActivity" />
         <activity
             android:name=".module.SetActivity"
             android:label="个人设置" />
