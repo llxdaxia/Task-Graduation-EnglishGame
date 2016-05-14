@@ -9,20 +9,20 @@
     <color name="yellow">#f4ca4c</color>
     <color name="deep_yellow">#efb609</color>
 
-    <color name="orange">#f58959</color>
-    <color name="deep_orange">#fc7334</color>
+    <color name="orange">#f48656</color>
+    <color name="deep_orange">#f26322</color>
 
     <color name="write">#fff</color>
     <color name="grey">#e0e0e0</color>
 
-    <color name="green">#FF57E991</color>
-    <color name="deep_green">#FF29AF5E</color>
+    <color name="green">#49c97c</color>
+    <color name="deep_green">#12b753</color>
 
-    <color name="blue">#3698f4</color>
-    <color name="deep_blue">#FF1773C9</color>
+    <color name="blue">#3c9bf4</color>
+    <color name="deep_blue">#1072ce</color>
 
-    <color name="red">#ccf74c4c</color>
-    <color name="deep_red">#ccf92d2d</color>
+    <color name="red">#ccf95a5a</color>
+    <color name="deep_red">#ccf22c2c</color>
     
     <color name="deep_gray">#ccbfbfbf</color>
 

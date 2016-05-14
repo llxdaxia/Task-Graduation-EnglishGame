@@ -36,7 +36,6 @@ public class StarAdapter extends RecyclerView.Adapter<StarAdapter.StarViewHolder
 
     @Override
     public void onBindViewHolder(StarViewHolder holder, final int position) {
-        Utils.Log("onBindViewHolder");
         //给每个关卡设置一个监听跳转
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
