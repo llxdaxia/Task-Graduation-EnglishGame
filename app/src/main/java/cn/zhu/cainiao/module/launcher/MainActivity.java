@@ -1,4 +1,4 @@
-package cn.zhu.cainiao;
+package cn.zhu.cainiao.module.launcher;
 
 import android.Manifest;
 import android.content.Intent;
@@ -9,26 +9,22 @@ import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.TextView;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.alien95.util.Utils;
+import cn.zhu.cainiao.R;
 import cn.zhu.cainiao.app.BaseActivity;
 import cn.zhu.cainiao.config.Config;
-import cn.zhu.cainiao.module.CheckpointsLevelActivity;
-import cn.zhu.cainiao.module.LoginActivity;
-import cn.zhu.cainiao.module.SetActivity;
-import cn.zhu.cainiao.module.StudyLevelActivity;
-import cn.zhu.cainiao.module.TaskExplainActivity;
+import cn.zhu.cainiao.module.points.CheckpointsLevelActivity;
+import cn.zhu.cainiao.module.user.LoginActivity;
+import cn.zhu.cainiao.module.user.SetActivity;
+import cn.zhu.cainiao.module.study.StudyLevelActivity;
+import cn.zhu.cainiao.module.user.TaskExplainActivity;
 
 public class MainActivity extends BaseActivity {
 
-    @BindView(R.id.start_checkpoints)
     TextView startCheckpoints;
-    @BindView(R.id.study)
     TextView study;
-    @BindView(R.id.level_set)
     TextView levelSet;
-    @BindView(R.id.task_explain)
     TextView taskExplain;
 
     private final int PERMISSION_REQUEST_CODE = 110;
@@ -36,9 +32,14 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.launcher_activity_main);
         ButterKnife.bind(this);
         setToolbarIsBack(false);
+
+        startCheckpoints = (TextView) findViewById(R.id.start_checkpoints);
+        study = (TextView) findViewById(R.id.study);
+        levelSet = (TextView) findViewById(R.id.level_set);
+        taskExplain = (TextView) findViewById(R.id.task_explain);
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
                 || ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {

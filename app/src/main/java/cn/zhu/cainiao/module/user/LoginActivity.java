@@ -1,4 +1,4 @@
-package cn.zhu.cainiao.module;
+package cn.zhu.cainiao.module.user;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,8 +7,6 @@ import android.support.design.widget.TextInputLayout;
 import android.view.View;
 import android.widget.Button;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import cn.alien95.util.Utils;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.LogInListener;
@@ -23,21 +21,21 @@ import cn.zhu.cainiao.model.bean.User;
  */
 public class LoginActivity extends BaseActivity {
 
-    @BindView(R.id.user_name)
     TextInputLayout userName;
-    @BindView(R.id.password)
     TextInputLayout password;
-    @BindView(R.id.register)
     Button register;
-    @BindView(R.id.login)
     Button login;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-        ButterKnife.bind(this);
+        setContentView(R.layout.user_activity_login);
         setToolbarIsBack(true);
+
+        userName = (TextInputLayout) findViewById(R.id.user_name);
+        password = (TextInputLayout) findViewById(R.id.password);
+        register = (Button) findViewById(R.id.register);
+        login = (Button) findViewById(R.id.login);
 
         String name = getIntent().getStringExtra(RegisterActivity.USER_NAME);
         String pw = getIntent().getStringExtra(RegisterActivity.PASSWORD);

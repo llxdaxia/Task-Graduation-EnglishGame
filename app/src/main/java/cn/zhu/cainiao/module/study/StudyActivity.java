@@ -1,4 +1,4 @@
-package cn.zhu.cainiao.module;
+package cn.zhu.cainiao.module.study;
 
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
@@ -12,8 +12,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import cn.alien95.resthttp.view.HttpImageView;
 import cn.alien95.util.Utils;
 import cn.bmob.v3.listener.FindListener;
@@ -29,17 +27,11 @@ import cn.zhu.cainiao.model.bean.Word;
  */
 public class StudyActivity extends BaseActivity {
 
-    @BindView(R.id.chinese)
     TextView chinese;
-    @BindView(R.id.english)
     TextView english;
-    @BindView(R.id.pronunciation)
     ImageView pronunciation;
-    @BindView(R.id.phoneticSymbol)
     TextView phoneticSymbol;
-    @BindView(R.id.image)
     HttpImageView image;
-    @BindView(R.id.next)
     TextView next;
 
     private List<Word> wordData;
@@ -55,9 +47,15 @@ public class StudyActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_study);
-        ButterKnife.bind(this);
+        setContentView(R.layout.study_activity);
         setToolbarIsBack(true);
+
+        chinese = (TextView) findViewById(R.id.chinese);
+        english = (TextView) findViewById(R.id.english);
+        pronunciation = (ImageView) findViewById(R.id.pronunciation);
+        phoneticSymbol = (TextView) findViewById(R.id.phoneticSymbol);
+        image = (HttpImageView) findViewById(R.id.word_image);
+        next = (TextView) findViewById(R.id.next);
 
         currentStudyLevelNum = getIntent().getIntExtra(Config.POSITION, -1);
         isUpdateLevel = getIntent().getBooleanExtra(Config.IS_UPDATE_LEVEL, false);

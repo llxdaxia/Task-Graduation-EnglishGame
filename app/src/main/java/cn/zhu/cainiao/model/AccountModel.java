@@ -31,7 +31,7 @@ public class AccountModel {
         return instance;
     }
 
-    public void login(String name,String password, LogInListener<User> logInListener) {
+    public void login(String name, String password, LogInListener<User> logInListener) {
         BmobUser.loginByAccount(Utils.getContext(), name, password, logInListener);
     }
 
@@ -102,7 +102,11 @@ public class AccountModel {
         query.findObjects(Utils.getContext(), new FindListener<User>() {
             @Override
             public void onSuccess(List<User> data) {
-                Utils.writeObjectToFile(data.get(0), Config.USER_FILE);
+                if (!data.isEmpty()) {
+                    Utils.writeObjectToFile(data.get(0), Config.USER_FILE);
+                } else {
+                    Utils.Log("获取用户信息失败--没有这个用户");
+                }
             }
 
             @Override

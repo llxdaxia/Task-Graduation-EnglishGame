@@ -1,4 +1,4 @@
-package cn.zhu.cainiao.module;
+package cn.zhu.cainiao.module.points;
 
 import android.os.Bundle;
 import android.view.View;
@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import cn.alien95.resthttp.view.HttpImageView;
 import cn.alien95.util.Utils;
 import cn.bmob.v3.listener.FindListener;
@@ -25,16 +23,10 @@ import cn.zhu.cainiao.model.bean.Word;
  */
 public class CheckpointsActivity extends BaseActivity {
 
-
-    @BindView(R.id.word_image)
     HttpImageView wordImage;
-    @BindView(R.id.A)
     TextView A;
-    @BindView(R.id.B)
     TextView B;
-    @BindView(R.id.C)
     TextView C;
-    @BindView(R.id.D)
     TextView D;
     private List<Word> wordData;
     private List<Integer> randomNum = new ArrayList<>();
@@ -49,9 +41,14 @@ public class CheckpointsActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_checkpoints);
-        ButterKnife.bind(this);
+        setContentView(R.layout.points_activity_check);
         setToolbarIsBack(true);
+
+        wordImage = (HttpImageView) findViewById(R.id.word_image);
+        A = (TextView) findViewById(R.id.A);
+        B = (TextView) findViewById(R.id.B);
+        C = (TextView) findViewById(R.id.C);
+        D = (TextView) findViewById(R.id.D);
 
         currentLevelNum = getIntent().getIntExtra(Config.POSITION, -1);
         isUpdateLevel = getIntent().getBooleanExtra(Config.IS_UPDATE_LEVEL, false);
@@ -107,45 +104,6 @@ public class CheckpointsActivity extends BaseActivity {
                 }
             }
         });
-
-
-//        next.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                if (!isSelectCorrect) {
-//                    showDialog("请选择正确答案");
-//                    return;
-//                }
-//
-//                if (currentSurplusNum == 0) {  //本章节已经学习完了
-//                    Utils.Toast("恭喜你，完成了这个关卡");
-//                    if (isUpdateLevel) {
-//                        AccountModel.getInstance().updateCheckpointLevel(currentLevelNum);
-//                    }
-//                    finish();
-//                } else {
-//                    if (currentSurplusNum == 1) {
-//                        next.setText("完成");
-//                    }
-//                    Word word = wordData.get((currentLevelNum - 1) * 10 + randomNum.get(currentSurplusNum - 1));
-//                    currentSurplusNum--;
-//
-//                    List<String> data = word.getOptions();
-//                    if (word.getImgUrl() != null && !word.getImgUrl().isEmpty()) {
-//                        wordImage.setImageUrl(word.getImgUrl());
-//                    }
-//                    A.setText(data.get(0));
-//                    B.setText(data.get(1));
-//                    C.setText(data.get(2));
-//                    D.setText(data.get(3));
-//
-//                    setOptionBackground();
-//                    setOptionListener(word);
-//                }
-//
-//            }
-//        });
 
     }
 

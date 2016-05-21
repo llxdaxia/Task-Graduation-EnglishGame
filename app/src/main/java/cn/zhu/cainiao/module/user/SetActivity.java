@@ -1,12 +1,10 @@
-package cn.zhu.cainiao.module;
+package cn.zhu.cainiao.module.user;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.TextView;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import cn.alien95.util.Utils;
 import cn.zhu.cainiao.R;
 import cn.zhu.cainiao.app.BaseActivity;
@@ -20,13 +18,9 @@ import cn.zhu.cainiao.model.bean.User;
 public class SetActivity extends BaseActivity {
 
 
-    @BindView(R.id.user_name)
     TextView userName;
-    @BindView(R.id.pass_level_num)
     TextView passLevelNum;
-    @BindView(R.id.study_level_num)
     TextView studyLevelNum;
-    @BindView(R.id.exit)
     TextView exit;
 
     private User user;
@@ -34,9 +28,13 @@ public class SetActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_set);
-        ButterKnife.bind(this);
+        setContentView(R.layout.user_activity_set);
         setToolbarIsBack(true);
+
+        userName = (TextView) findViewById(R.id.user_name);
+        passLevelNum = (TextView) findViewById(R.id.pass_level_num);
+        studyLevelNum = (TextView) findViewById(R.id.study_level_num);
+        exit = (TextView) findViewById(R.id.exit);
 
         user = AccountModel.getInstance().getAccount();
 

@@ -3,7 +3,7 @@ apply plugin: 'com.neenbedankt.android-apt'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.2"
+    buildToolsVersion "23.0.3"
 
     //android6.0删除了Apache的http，通过这个依赖
     useLibrary 'org.apache.http.legacy'
@@ -42,7 +42,7 @@ dependencies {
     compile 'com.jakewharton:butterknife:8.0.1'
     apt 'com.jakewharton:butterknife-compiler:8.0.1'
 
-    compile 'cn.alien95:util:1.0.8-beta4'
-    compile 'cn.alien95:resthttp:1.0.1-beta6'
+    compile 'cn.alien95:util:1.0.9'
+    compile 'cn.alien95:resthttp:1.0.1'
 
 }
