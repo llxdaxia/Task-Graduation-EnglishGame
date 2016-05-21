@@ -6,7 +6,7 @@ import android.widget.TextView;
 import cn.zhu.cainiao.R;
 import cn.zhu.cainiao.app.BaseActivity;
 
-public class TaskExplainActivity extends BaseActivity {
+public class ExplainActivity extends BaseActivity {
 
     TextView content;
     TextView author;
@@ -14,7 +14,7 @@ public class TaskExplainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.user_activity_task_explain);
+        setContentView(R.layout.user_activity_explain);
         setToolbarIsBack(true);
 
         content = (TextView) findViewById(R.id.content);
@@ -29,6 +29,7 @@ public class TaskExplainActivity extends BaseActivity {
         author.setText("姓名：林龙鑫，周建国，杨程\n" +
                 "学校：重庆邮电大学\n" +
                 "学号：2013211466\n" +
+
                 "学院：计算机科学与技术学院\n" +
                 "专业：计算机科学与技术专业\n");
     }

@@ -18,7 +18,7 @@ import cn.zhu.cainiao.module.points.CheckpointsLevelActivity;
 import cn.zhu.cainiao.module.user.LoginActivity;
 import cn.zhu.cainiao.module.user.SetActivity;
 import cn.zhu.cainiao.module.study.StudyLevelActivity;
-import cn.zhu.cainiao.module.user.TaskExplainActivity;
+import cn.zhu.cainiao.module.user.ExplainActivity;
 
 public class MainActivity extends BaseActivity {
 
@@ -72,7 +72,7 @@ public class MainActivity extends BaseActivity {
         taskExplain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, TaskExplainActivity.class));
+                startActivity(new Intent(MainActivity.this, ExplainActivity.class));
             }
         });
 

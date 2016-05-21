@@ -38,7 +38,7 @@
             android:name=".module.user.SetActivity"
             android:label="个人设置" />
         <activity
-            android:name=".module.user.TaskExplainActivity"
+            android:name=".module.user.ExplainActivity"
             android:label="应用说明" />
         <activity
             android:name=".module.points.CheckpointsLevelActivity"
