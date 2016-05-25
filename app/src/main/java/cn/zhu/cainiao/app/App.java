@@ -24,7 +24,7 @@ public class App extends Application {
         }
 
         //7914417338839ca7521908cfecd1851c
-        Bmob.initialize(this, "e5c63b8c7989f5b438b72d645ff3aa60");
+        Bmob.initialize(this, "7914417338839ca7521908cfecd1851c");
 
     }
 }

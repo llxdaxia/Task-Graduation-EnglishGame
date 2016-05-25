@@ -54,13 +54,13 @@ public class StudyActivity extends BaseActivity {
         english = (TextView) findViewById(R.id.english);
         pronunciation = (ImageView) findViewById(R.id.pronunciation);
         phoneticSymbol = (TextView) findViewById(R.id.phoneticSymbol);
-        image = (HttpImageView) findViewById(R.id.word_image);
+        image = (HttpImageView) findViewById(R.id.image);
         next = (TextView) findViewById(R.id.next);
 
         currentStudyLevelNum = getIntent().getIntExtra(Config.POSITION, -1);
         isUpdateLevel = getIntent().getBooleanExtra(Config.IS_UPDATE_LEVEL, false);
 
-        setTitle("第" + currentStudyLevelNum + "章节");
+        setTitle(Config.SUBHEAD_TITLE[currentStudyLevelNum - 1]);
 
         textToSpeech = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
             @Override

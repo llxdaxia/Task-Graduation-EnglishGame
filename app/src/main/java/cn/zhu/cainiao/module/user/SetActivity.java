@@ -18,10 +18,11 @@ import cn.zhu.cainiao.model.bean.User;
 public class SetActivity extends BaseActivity {
 
 
-    TextView userName;
-    TextView passLevelNum;
-    TextView studyLevelNum;
-    TextView exit;
+    private TextView userName;
+    private TextView passLevelNum;
+    private TextView studyLevelNum;
+    private TextView exit;
+    private TextView designation;
 
     private User user;
 
@@ -35,12 +36,14 @@ public class SetActivity extends BaseActivity {
         passLevelNum = (TextView) findViewById(R.id.pass_level_num);
         studyLevelNum = (TextView) findViewById(R.id.study_level_num);
         exit = (TextView) findViewById(R.id.exit);
+        designation = (TextView) findViewById(R.id.designation);
 
         user = AccountModel.getInstance().getAccount();
 
         userName.setText("用户名：" + user.getUsername());
         passLevelNum.setText("通过关卡数：" + user.getPassLevelNum());
         studyLevelNum.setText("学习章节数：" + user.getStudyLevelNum());
+        designation.setText("获得称号：" + Config.STUDY_LEVEL[(user.getPassLevelNum() - 1) / 2]);
 
         exit.setOnClickListener(new View.OnClickListener() {
             @Override

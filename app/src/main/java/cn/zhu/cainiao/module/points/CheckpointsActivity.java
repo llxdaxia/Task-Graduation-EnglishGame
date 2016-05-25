@@ -54,7 +54,7 @@ public class CheckpointsActivity extends BaseActivity {
         isUpdateLevel = getIntent().getBooleanExtra(Config.IS_UPDATE_LEVEL, false);
         backgroundRes = new int[]{R.drawable.random_one, R.drawable.random_two, R.drawable.random_three, R.drawable.random_four};
         setOptionBackground();  //设置选项的背景
-        setTitle("第" + currentLevelNum + "关");
+        setTitle(Config.SUBHEAD_TITLE[currentLevelNum - 1]);
 
         WordModel.getInstance().getAllWordData(new FindListener<Word>() {
             @Override

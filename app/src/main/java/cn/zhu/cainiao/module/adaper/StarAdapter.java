@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import cn.alien95.util.Utils;
 import cn.zhu.cainiao.R;
 import cn.zhu.cainiao.config.Config;
 import cn.zhu.cainiao.model.AccountModel;
@@ -48,9 +47,9 @@ public class StarAdapter extends RecyclerView.Adapter<StarAdapter.StarViewHolder
         });
 
         if (isPassLevel) {   //闯关的情况
-            holder.setData(user.getPassLevelNum(), position + 1, mContext);
+            holder.setData(user.getPassLevelNum(), position + 1);
         } else {    //学习的情况
-            holder.setData(user.getStudyLevelNum(), position + 1, mContext);
+            holder.setData(user.getStudyLevelNum(), position + 1);
         }
 
     }
@@ -70,18 +69,14 @@ public class StarAdapter extends RecyclerView.Adapter<StarAdapter.StarViewHolder
         private ImageView status;
         private TextView levelNum;
 
-        public StarViewHolder(View itemView) {
-            super(itemView);
-        }
-
         public StarViewHolder(ViewGroup parent, int resId) {
             super(LayoutInflater.from(parent.getContext()).inflate(resId, parent, false));
             levelNum = (TextView) itemView.findViewById(R.id.level_num);
             status = (ImageView) itemView.findViewById(R.id.status);
         }
 
-        public void setData(int levelNum, int position, final Context context) {
-            this.levelNum.setText(position + "");
+        public void setData(int levelNum, int position) {
+            this.levelNum.setText(Config.SUBHEAD_TITLE[position - 1]);
             if (levelNum >= position) {
                 status.setImageResource(R.drawable.ic_star_pass);
                 itemView.setEnabled(true);

@@ -9,7 +9,6 @@ import cn.zhu.cainiao.app.BaseActivity;
 public class ExplainActivity extends BaseActivity {
 
     TextView content;
-    TextView author;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,19 +17,14 @@ public class ExplainActivity extends BaseActivity {
         setToolbarIsBack(true);
 
         content = (TextView) findViewById(R.id.content);
-        author = (TextView) findViewById(R.id.author);
 
-        content.setText("-  在进行闯关之前必须先进入`英语学习`\n" +
-                "-  “英语学习”每章节有10个单词\n" +
-                "-  “闯关”每个关卡有10个单词\n" +
-                "-  学习过的章节数始终小于等于通过的关卡数\n" +
-                "-  加油吧！孩子");
+        content.setText(
+                "-  进行闯关之前请先`英语学习`。\n" +
+                        "-  “英语学习”每类别有10个单词。\n" +
+                        "-  “闯关”每个关卡有10个单词。\n" +
+                        "-  学习章节数大于等于通过的关卡数。\n" +
+                        "-  根据通过关卡数封称呼。\n" +
+                        "-  加油吧，这就是你的学神之路。");
 
-        author.setText("姓名：林龙鑫，周建国，杨程\n" +
-                "学校：重庆邮电大学\n" +
-                "学号：2013211466\n" +
-
-                "学院：计算机科学与技术学院\n" +
-                "专业：计算机科学与技术专业\n");
     }
 }
