@@ -26,5 +26,15 @@ public class App extends Application {
         //7914417338839ca7521908cfecd1851c
         Bmob.initialize(this, "7914417338839ca7521908cfecd1851c");
 
+        ClassLoader classLoader = getClassLoader();
+
+        if(classLoader == null){
+            Utils.Log("classLoader == null");
+        }
+
+        while (classLoader != null){
+            Utils.Log("parent : " + classLoader.toString());
+            classLoader = classLoader.getParent();
+        }
     }
 }

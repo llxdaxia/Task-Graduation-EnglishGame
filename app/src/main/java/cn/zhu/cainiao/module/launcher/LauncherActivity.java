@@ -8,7 +8,6 @@ import java.util.List;
 
 import cn.alien95.util.Utils;
 import cn.bmob.v3.listener.FindListener;
-import cn.zhu.cainiao.R;
 import cn.zhu.cainiao.model.AccountModel;
 import cn.zhu.cainiao.model.WordModel;
 import cn.zhu.cainiao.model.bean.Word;
@@ -18,7 +17,6 @@ public class LauncherActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.launcher_activity);
 
         AccountModel.getInstance().updateAccount();
         //获取所有单词数据并缓存到本地

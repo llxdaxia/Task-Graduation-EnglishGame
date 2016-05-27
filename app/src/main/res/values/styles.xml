@@ -10,7 +10,10 @@
 
     //设置ToolBar上面的menu的字体小写
 
-    <style name="ToolBarTheme" parent="Theme.AppCompat.NoActionBar"/>
+    <style name="ToolBarTheme" parent="Theme.AppCompat.NoActionBar" />
 
+    <style name="LauncherTheme" parent="@android:style/Theme.NoTitleBar.Fullscreen">
+        <item name="android:background">@drawable/launcher</item>
+    </style>
 
 </resources>

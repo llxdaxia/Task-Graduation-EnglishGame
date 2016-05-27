@@ -16,7 +16,7 @@
         android:theme="@style/AppTheme">
 
         <activity android:name=".module.launcher.LauncherActivity"
-            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen">
+            android:theme="@style/LauncherTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
